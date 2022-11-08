@@ -15,13 +15,14 @@
 }
 canvas {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 500px;
 }
   </style>
  </HEAD>
  <BODY>
   <canvas id="pinkboard"></canvas>
+  <canvas id="haha"></canvas>
   <script>
   /*
  * Settings
@@ -39,6 +40,33 @@ var settings = {
  * RequestAnimationFrame polyfill by Erik Möller
  */
 (function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+
+setTimeout(function() {
+    var canvas = document.getElementById('haha');
+    context = canvas.getContext('2d');
+
+    
+    function make_base()
+    {
+      base_image = new Image();
+      base_image.src = 'img/ngan.jpg';
+      // base_image.src = 'https://media.baodautu.vn/Images/phuongthanh02/2022/11/01/World%20Cup%202022.jpg';
+      base_image.onload = function(){
+        context.canvas.width = base_image.width;
+        context.canvas.height = base_image.height;
+        context.globalAlpha = 0.5;
+        context.drawImage(base_image, 0, 0,base_image.width, base_image.height);
+      }
+    }
+
+    make_base();
+
+    console.log('hahaha');
+    console.log(base_image);
+    document.getElementById('haha').style.zIndex = 3;  
+  }, 1000);
+
+
 /*
  * Point class
  */
